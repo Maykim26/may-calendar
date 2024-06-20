@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/may-calendar/static/css/main.b5b8eb3e.css",
-    "main.js": "/may-calendar/static/js/main.100ae04b.js",
+    "main.js": "/may-calendar/static/js/main.b597ac26.js",
     "static/js/453.4f2064db.chunk.js": "/may-calendar/static/js/453.4f2064db.chunk.js",
     "index.html": "/may-calendar/index.html",
     "main.b5b8eb3e.css.map": "/may-calendar/static/css/main.b5b8eb3e.css.map",
-    "main.100ae04b.js.map": "/may-calendar/static/js/main.100ae04b.js.map",
+    "main.b597ac26.js.map": "/may-calendar/static/js/main.b597ac26.js.map",
     "453.4f2064db.chunk.js.map": "/may-calendar/static/js/453.4f2064db.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b5b8eb3e.css",
-    "static/js/main.100ae04b.js"
+    "static/js/main.b597ac26.js"
   ]
 }
