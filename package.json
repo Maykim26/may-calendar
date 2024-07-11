@@ -35,7 +35,7 @@
         "deploy": "gh-pages -d build",
         "dev": "nodemon index.js"
     },
-    "homepage": "https://username.github.io/mob",
+    "homepage": "https://username.github.io/may-calendar",
     "eslintConfig": {
         "extends": [
             "react-app",
@@ -64,12 +64,12 @@
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Maykim26/mob.git"
+        "url": "git+https://maykim26.github.io/may-calendar"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/Maykim26/mob/issues"
+        "url": "https://github.com/Maykim26/may-calendar/issues"
     }
 }

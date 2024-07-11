@@ -98,12 +98,13 @@
 .crud-color-c.selected .crud-color:before {
     display: block;
 }
-.mbsc-calendar-day-inner {
+
+.mainCalender .mbsc-calendar-day-inner {
     height: 104px !important;
 }
-.mbsc-calendar-day-inner .mbsc-calendar-day-text {
+.mainCalender .mbsc-calendar-day-inner .mbsc-calendar-day-text {
     height: 14px !important;
-    line-height: 20px;
+    line-height: 14px !important;
 }
 .mbsc-ios.mbsc-textfield-tag {
     background-color: #f1f4f8 !important;
@@ -114,6 +115,7 @@
 .mbsc-event-all-day {
     display: none !important;
 }
+
 .md-custom-event-cont {
     display: flex;
     justify-content: space-between;

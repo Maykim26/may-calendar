@@ -83,7 +83,7 @@ function App() {
     const [endDate, setEndDate] = useState(null);
     const colorPicker = useRef();
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
             const [docSnap, workerSnap] = await Promise.all([
                 getDoc(doc(db, "test", "eventId")),
@@ -99,11 +99,10 @@ function App() {
         } catch (error) {
             console.error("Error fetching document: ", error);
         }
-    };
+    }, []);
     useEffect(() => {
         fetchData();
     }, [fetchData]);
-
     useEffect(() => {
         const fetchEvents = async () => {
             const eventsCol = collection(db, "test");
@@ -121,7 +120,7 @@ function App() {
 
     async function getTest() {
         const docRef = doc(db, "test");
-        const docSnap = await getDoc(docRef);
+        const docSnap = await getDoc(doc(db, "test", "Id"));
 
         if (docSnap.exists()) {
             setTest(docSnap.data());
@@ -129,15 +128,15 @@ function App() {
     }
     const saveEvent = useCallback(async () => {
         const startDate =
-            popupEventDate[0] instanceof Date && !isNaN(popupEventDate[0])
-                ? popupEventDate[0]
-                : new Date();
+            tempEvent.start instanceof Object
+                ? tempEvent.start.toISOString()
+                : tempEvent.start;
         const endDate =
-            popupEventDate[1] instanceof Date && !isNaN(popupEventDate[1])
-                ? popupEventDate[1]
-                : new Date();
+            tempEvent.end instanceof Object
+                ? tempEvent.end.toISOString()
+                : tempEvent.end;
 
-        // 작업자 정보를 ID와 이름을 포함한 객체의 배열로 변환
+        // 나머지 함수 내용은 그대로 유지됩니다.
         const selectedWorkerInfo = selectedWorker.map((workerId) => {
             const worker = myData.find((data) => data.value === workerId);
             return {
@@ -147,9 +146,9 @@ function App() {
         });
 
         const newEvent = {
-            title: popupEventTitle || "New event",
-            start: startDate.toISOString(),
-            end: endDate.toISOString(),
+            title: popupEventTitle || "새 이벤트",
+            start: startDate,
+            end: endDate,
             selectedPM: getSelectedPMName(selectedPM),
             selectedWorker: selectedWorkerInfo,
             color: selectedColor || "",
@@ -171,7 +170,7 @@ function App() {
             }
             setOpen(false);
         } catch (error) {
-            console.error("Error saving event:", error);
+            console.error("이벤트 저장 중 오류 발생:", error);
         }
     }, [
         isEdit,
@@ -219,7 +218,8 @@ function App() {
         const workerDoc = await getDoc(doc(db, "workerCollection", workerId));
         return workerDoc.data();
     };
-    const loadPopupForm = useCallback((event) => {
+    const loadPopupForm = (event) => {
+        console.log("event=" + JSON.stringify(event));
         setTitle(event.title || "");
         setSelect("");
         setDate([event.start, event.end]);
@@ -228,14 +228,16 @@ function App() {
         const { selectedPM, selectedWorker } = event;
 
         setSelectedPM(selectedPM);
-        const workerArray = Array.isArray(selectedWorker) ? selectedWorker : [];
-        console.log("Worker Array:", workerArray);
 
+        // 수정: selectedWorker 데이터를 올바르게 설정
+        const workerArray = Array.isArray(selectedWorker)
+            ? selectedWorker.map((item) => item.id)
+            : [];
         setSelectedWorker(workerArray);
 
         // 수정 창이 열리도록 setOpen(true) 호출
         setOpen(true);
-    }, []);
+    };
 
     const myView = useMemo(
         () => ({
@@ -336,7 +338,8 @@ function App() {
 
     // 작업자 선택 핸들러
     const handleWorkerChange = useCallback((ev) => {
-        setSelectedWorker(Array.isArray(ev.value) ? ev.value : [ev.value]);
+        const selectedValue = Array.isArray(ev.value) ? ev.value : [ev.value];
+        setSelectedWorker(selectedValue);
     }, []);
 
     const titleChange = useCallback((ev) => {
@@ -384,21 +387,19 @@ function App() {
             setOpen(true);
 
             // 가져온 이벤트 객체에서 PM과 Worker 정보를 가져옵니다.
-            const { selectedPM, selectedWorkerIds } = args.event;
+            const { selectedPM, selectedWorker } = args.event;
 
             // 선택된 PM을 설정합니다.
             setSelectedPM(selectedPM);
 
-            // 선택된 Worker IDs를 배열로 변환합니다.
-            const workerIdsArray = selectedWorkerIds
-                ? Object.values(selectedWorkerIds)
+            // 수정: selectedWorker 데이터를 올바르게 설정
+            const workerArray = Array.isArray(selectedWorker)
+                ? selectedWorker.map((item) => item.id)
                 : [];
-            // 선택된 Worker IDs를 설정합니다.
-            setSelectedWorker(workerIdsArray);
+            setSelectedWorker(workerArray);
         },
         [loadPopupForm]
     );
-
     const onEventCreated = useCallback(
         (args) => {
             // createNewEvent(args.event, args.target)
@@ -529,7 +530,7 @@ function App() {
 
     return (
         <>
-            <div>{test !== undefined && <div>{test.id}</div>}</div>
+            {/* <div>{test !== undefined && <div>{test.id}</div>}</div> */}
             <Eventcalendar
                 view={myView}
                 data={events}
@@ -543,11 +544,12 @@ function App() {
                 onEventClick={onEventClick}
                 onEventCreated={onEventCreated}
                 onEventDeleted={onEventDeleted}
+                className="mainCalender"
                 onEventUpdated={onEventUpdated}
             />
             <Popup
-                display="anchored"
-                fullScreen={true}
+                display="center"
+                // fullScreen={true}
                 contentPadding={false}
                 headerText={headerText}
                 anchor={anchor}
