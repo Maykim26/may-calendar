@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/may-calendar/static/css/main.6df0bc7a.css",
-    "main.js": "/may-calendar/static/js/main.a77fe5cd.js",
+    "main.css": "/may-calendar/static/css/main.a2c7a3e9.css",
+    "main.js": "/may-calendar/static/js/main.a54947a6.js",
     "static/js/453.9784eb26.chunk.js": "/may-calendar/static/js/453.9784eb26.chunk.js",
     "static/media/NotoSansKR-VariableFont_wght.ttf": "/may-calendar/static/media/NotoSansKR-VariableFont_wght.33752a94ca5252213de8.ttf",
     "index.html": "/may-calendar/index.html",
-    "main.6df0bc7a.css.map": "/may-calendar/static/css/main.6df0bc7a.css.map",
-    "main.a77fe5cd.js.map": "/may-calendar/static/js/main.a77fe5cd.js.map",
+    "main.a2c7a3e9.css.map": "/may-calendar/static/css/main.a2c7a3e9.css.map",
+    "main.a54947a6.js.map": "/may-calendar/static/js/main.a54947a6.js.map",
     "453.9784eb26.chunk.js.map": "/may-calendar/static/js/453.9784eb26.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6df0bc7a.css",
-    "static/js/main.a77fe5cd.js"
+    "static/css/main.a2c7a3e9.css",
+    "static/js/main.a54947a6.js"
   ]
 }
