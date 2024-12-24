@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# 프로젝트 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 **캘린더 기반의 이벤트 관리 애플리케이션**으로, 사용자가 특정 날짜에 이벤트를 생성, 수정, 삭제할 수 있는 기능을 제공합니다. 또한, 색상 선택기와 팝업 폼을 활용하여 이벤트 관리의 편리함을 높이고, 사용자 경험을 고려한 UI/UX 디자인이 적용되었습니다.
 
-## Available Scripts
+🛠️ **주요 기능**
 
-In the project directory, you can run:
+- **이벤트 생성 및 수정**:
+     - 사용자는 캘린더에서 날짜를 선택하거나 더블 클릭하여 이벤트를 생성할 수 있습니다.
+     - 이벤트 생성 시, 제목, PM(프로젝트 매니저), 작업자, 날짜 등을 입력할 수 있는 팝업 폼이 표시됩니다.
+     - 생성된 이벤트는 클릭하여 수정할 수 있습니다. 수정 시에도 동일한 폼을 통해 변경 사항을 저장합니다.
+- **이벤트 삭제**:
+     - 생성된 이벤트를 클릭한 후, 삭제 버튼을 눌러 해당 이벤트를 삭제할 수 있습니다.
+     - 삭제된 이벤트는 즉시 캘린더에서 제거됩니다.
+- **색상 선택기**:
+     - 각 이벤트에 색상을 지정할 수 있는 색상 선택기가 제공됩니다.
+     - 사용자는 팝업 폼에서 색상을 선택하거나, 별도의 색상 선택 UI를 통해 이벤트의 색상을 변경할 수 있습니다.
+- **팝업 폼**:
+     - 이벤트 생성 및 수정 시 사용할 수 있는 팝업 폼이 제공됩니다.
+     - 이 폼은 이벤트 제목, PM, 작업자 선택, 시작 및 종료 날짜 등을 입력할 수 있게 되어 있어, 직관적이고 사용하기 편리합니다.
+- **스낵바 알림**:
 
-### `npm start`
+     - 이벤트가 성공적으로 추가되거나 수정된 후, 사용자에게 피드백을 제공하는 **스낵바 알림**이 나타납니다.
+     - 이를 통해 사용자에게 작업 완료 사실을 빠르게 알릴 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **다양한 사용자 설정**:
+     - 이벤트에 대한 설정을 **PM(프로젝트 매니저)** 및 **작업자** 리스트에서 선택할 수 있습니다.
+     - 각 이벤트에 대해 여러 명의 작업자를 지정할 수 있으며, 이 정보는 이벤트 상세 정보로 표시됩니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+📐 **기술 스택**
 
-### `npm test`
+- **프론트엔드**:
+     - **React.js**: 컴포넌트 기반의 UI를 구축하고, 상태 관리에 React의 내장 훅을 활용합니다.
+- **라이브러리**:
+     - **Mobiscroll**: 캘린더, 팝업, 색상 선택기 및 스낵바 등의 UI 구성 요소를 제공하는 라이브러리입니다.
+     - **React Hooks**: 상태 관리 및 라이프 사이클 관리를 위해 `useState`, `useEffect`, `useCallback`을 사용하여 컴포넌트의 동작을 처리합니다.
+- **데이터 저장**:
+     - **Firebase**: 실시간 데이터베이스로 Firebase를 사용하여 캘린더의 이벤트 데이터를 저장하고 불러옵니다.
+     - Firebase는 실시간으로 데이터를 동기화할 수 있어, 여러 사용자가 동시에 이벤트를 관리하는 경우에도 유용합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🚀 **흐름**
 
-### `npm run build`
+1. **이벤트 생성**: 사용자는 캘린더에서 특정 날짜를 더블 클릭하거나 클릭하여 새로운 이벤트를 생성할 수 있습니다.
+2. **이벤트 입력**: 팝업 폼이 열리며, 여기서 제목, PM, 작업자, 날짜 등 필요한 정보를 입력합니다. 색상도 선택할 수 있습니다.
+3. **이벤트 저장**: 폼에서 저장을 클릭하면 해당 이벤트가 캘린더에 추가됩니다. 추가된 이벤트는 색상과 함께 표시됩니다.
+4. **이벤트 수정**: 캘린더에 추가된 이벤트를 클릭하면, 해당 이벤트를 수정할 수 있는 팝업 폼이 열립니다. 수정 후 다시 저장을 클릭하면 변경 사항이 반영됩니다.
+5. **이벤트 삭제**: 캘린더에서 이벤트를 클릭하고, 삭제 버튼을 눌러 해당 이벤트를 삭제할 수 있습니다.
+6. **스낵바 알림**: 이벤트가 성공적으로 생성, 수정 또는 삭제되면 스낵바가 나타나 사용자에게 알림을 제공합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🎨 **UI/UX 디자인**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **캘린더 뷰**:
+     - 직관적이고 사용하기 쉬운 달력 뷰를 제공하며, 이벤트가 표시되는 날짜는 색상이나 아이콘 등으로 구분할 수 있습니다.
+     - 캘린더 내 이벤트를 클릭하거나 더블 클릭하여 세부 정보를 쉽게 확인하고 수정할 수 있습니다.
+- **팝업 폼**:
+     - 이벤트 생성 및 수정 폼은 명확한 레이블을 가지고 있으며, 필드 간 간격을 적절히 두어 사용자가 쉽게 정보를 입력할 수 있도록 구성되었습니다.
+     - 각 입력 필드와 버튼은 터치 및 클릭에 적합하게 크기와 배치가 조정되어 있습니다.
+- **색상 선택기**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+     - 색상 선택기는 간단한 UI로, 사용자가 이벤트에 맞는 색상을 선택할 수 있도록 직관적으로 제공됩니다.
+     - 색상 목록을 스크롤하여 다양한 색상 옵션을 선택할 수 있으며, 이벤트와 관련된 색상을 쉽게 구별할 수 있습니다.
 
-### `npm run eject`
+- **반응형 디자인**:
+     - 이 애플리케이션은 데스크탑, 태블릿, 모바일 장치에서 원활하게 작동할 수 있도록 반응형 디자인이 적용되었습니다.
+     - 화면 크기에 맞게 UI가 자동으로 조정되며, 작은 화면에서도 편리하게 사용할 수 있도록 최적화되었습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+🔍 **추가 구현 고려 사항**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **컴포넌트화**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+     - 각 기능을 독립적인 **컴포넌트**로 분리하여 코드의 재사용성과 유지보수성을 향상시킬 수 있습니다.
+     - 예를 들어, 팝업 폼, 캘린더, 색상 선택기 등 UI 요소들을 개별 컴포넌트로 나누고, 필요에 따라 서로 결합하여 더욱 효율적인 개발이 가능하도록 합니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **사람 데이터 추가**:
 
-## Learn More
+     - 각 이벤트에 **PM(프로젝트 매니저)**와 **작업자** 데이터를 연결하여, 프로젝트의 참여자들을 관리할 수 있습니다.
+     - 사용자마다 다르게 나타날 수 있는 PM과 작업자 정보를 Firebase 데이터베이스에서 동적으로 로드하고, 이를 바탕으로 실시간으로 팀 구성 정보를 확인할 수 있게 구현할 수 있습니다.
+     - 사람 데이터를 추가하여, 팀의 효율적인 관리와 업무 배분을 지원할 수 있습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **사용자 인증 및 권한 관리**:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+     - Firebase Authentication을 활용해 사용자가 로그인하고, 개인화된 캘린더를 사용할 수 있도록 구현할 수 있습니다.
+     - 각 사용자의 권한에 따라 이벤트를 관리할 수 있는 기능을 추가할 수 있습니다.
 
-### Code Splitting
+- **알림 시스템**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+     - 이벤트의 시작 시간에 맞춰 사용자에게 알림을 보내는 기능을 추가할 수 있습니다.
+     - 사용자는 캘린더에서 이벤트를 설정하고 알림을 받을 수 있습니다.
 
-### Analyzing the Bundle Size
+- **다국어 지원**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+     - 여러 언어를 지원하는 기능을 추가하여, 다양한 국가의 사용자들이 쉽게 접근하고 사용할 수 있도록 할 수 있습니다.
 
-### Making a Progressive Web App
+- **캘린더 뷰 개선**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+     - 주간/월간 뷰 및 다른 보기 모드를 추가하여 사용자가 자신에게 가장 적합한 방식으로 캘린더를 볼 수 있도록 할 수 있습니다.
+     - 여러 개의 캘린더를 추가하여 프로젝트마다 별도의 캘린더를 관리할 수 있는 기능을 고려할 수 있습니다.
